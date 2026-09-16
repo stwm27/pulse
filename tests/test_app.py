@@ -1,0 +1,19 @@
+from app.app import app
+
+
+def test_home():
+    client = app.test_client() # создаёт тестового клиента. То есть нам не нужно вручную запускать Flask-сервер
+
+    response = client.get("/") 
+
+    assert response.status_code == 200
+    assert response.get_json() == {"message": "Hello DevOps"}
+
+
+def test_health():
+    client = app.test_client()
+
+    response = client.get("/health") # имитирует HTTP-запрос 
+
+    assert response.status_code == 200
+    assert response.get_json() == {"status": "ok"}
