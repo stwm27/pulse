@@ -13,13 +13,13 @@ The application exposes a basic HTTP endpoint and a health check endpoint. Tests
 
 ## Features
 
-- [x] Simple Flask web application
-- [x] Health check endpoint
-- [x] Automated tests with pytest
-- [x] Docker containerization
-- [x] Bash script for test automation
-- [x] GitLab CI pipeline
-- [x] Docker image publishing to GitLab Container Registry
+1. Simple Flask web application
+2. Health check endpoint
+3. Automated tests with pytest
+4. Docker containerization
+5. Bash script for test automation
+6. GitLab CI pipeline
+7. Docker image publishing to GitLab Container Registry
 
 
 ## CI Pipeline
