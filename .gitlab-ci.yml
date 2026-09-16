@@ -12,18 +12,21 @@ test:
   script:
     - python -m pytest
 
-
 docker-build:
   stage: build
-  image: docker:cli
+  image: docker:24.0.5-cli
 
   services:
-    - docker:dind
+    - docker:24.0.5-dind
 
   variables:
-    DOCKER_HOST: tcp://docker:2375
-    DOCKER_TLS_CERTDIR: ""
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_CERTDIR: "/certs"
+    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin
 
   script:
-    - docker build -t devops-prac:$CI_COMMIT_SHORT_SHA .
-    - docker images
+    - docker build -t $IMAGE_TAG .
+    - docker push $IMAGE_TAG
