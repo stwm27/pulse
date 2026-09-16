@@ -1,0 +1,12 @@
+stages:
+  - test
+
+test:
+  stage: test
+  image: python:3.11-slim # GitLab Runner создаст временный контейнер с Python 3.11.
+
+  before_script:
+    - pip install --no-cache-dir -r requirements.txt # Установит зависимости.
+
+  script:
+    - python -m pytest
